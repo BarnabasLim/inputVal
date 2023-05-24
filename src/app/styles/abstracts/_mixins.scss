@@ -1,0 +1,32 @@
+@mixin respond($breakpoint){
+    @if $breakpoint==xs{
+        &:not(.no--responsive){
+            @media only screen and (max-width: $xs-breakpoints){@content};
+        }
+    }
+    @if $breakpoint==sm{
+        &:not(.no--responsive){
+            @media only screen and (max-width: $sm-breakpoints){@content};
+        }
+    }
+    @if $breakpoint==md{
+        &:not(.no--responsive){
+            @media only screen and (max-width: $md-breakpoints){@content};
+        }
+    }
+    @if $breakpoint==lg{
+        &:not(.no--responsive){
+            @media only screen and (max-width: $lg-breakpoints){@content};
+        }
+    }
+    @if $breakpoint==xl{
+        &:not(.no--responsive){
+            @media only screen and (max-width: $xl-breakpoints){@content};
+        }
+    }
+    @if $breakpoint==xs{
+        &:not(.no--responsive){
+            @media only screen and (max-width: $xs-breakpoints){@content};
+        }
+    }
+}

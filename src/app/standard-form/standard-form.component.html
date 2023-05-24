@@ -4,7 +4,7 @@
             <ng-template pTemplate="header">
                 <div class="card__header">
                     <h2>{{headerString}}</h2>
-                    <p-inputSwitch [(ngModel)]="checked" onclick="toggleClicked()"></p-inputSwitch>
+                    <p-inputSwitch [(ngModel)]="checked" (click)="toggleClicked()"></p-inputSwitch>
                 </div>
             </ng-template>
             <form [formGroup]="myForm" class="flex flex-column gap-4">
