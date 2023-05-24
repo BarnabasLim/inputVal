@@ -18,6 +18,9 @@
         }
         &--text{
             padding-right: 2px;
+            @include respond('sm'){
+                padding-right: 0px;
+            }
         }
     }
     
