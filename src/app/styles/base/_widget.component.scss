@@ -1,0 +1,25 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import 'primeflex/primeflex.scss';
+@import '~primeicons/primeicons.css';
+
+.widget{
+    &__background{
+        width: 100%;
+        height: 100%;
+        padding-top:1.5rem//24px
+    }
+    &__card{
+        max-width: 39.625rem;//634px
+        margin: 0px auto;
+
+        @include respond('md'){
+            max-width: 100%;
+            margin: 0px auto;
+            // padding-bottom: 10rem;
+        }
+    }
+}

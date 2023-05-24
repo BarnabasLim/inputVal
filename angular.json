@@ -32,6 +32,11 @@
                 "node_modules/primeng/resources/primeng.min.css",
                 "node_modules/primeicons/primeicons.css",
                 {
+                  "input": "src/theme/theme-lara-light-blue.scss",
+                  "bundleName": "lara-light-blue",
+                  "inject": false
+                },
+                {
                   "input": "src/theme/theme-saga-blue.scss",
                   "bundleName": "saga-blue",
                   "inject": false

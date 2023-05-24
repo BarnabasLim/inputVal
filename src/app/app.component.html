@@ -1,9 +1,21 @@
-
-<p-card>
-    <ng-template pTemplate="header">
-        <div class="card__header">
-            Header content here
+<div class="widget__card">
+    <div class="widget__background">
+        <div class="widget__card">
+            <p-card>
+                <ng-template pTemplate="header">
+                    <div class="card__header">
+                        Header content here
+                    </div>
+                </ng-template>
+                <p-button label="Submit" (click)="loopTheme()"></p-button>
+                <p>{{theme}}</p>
+            </p-card>
         </div>
-    </ng-template>
-    <p-button label="Submit" (click)="loopTheme()"></p-button>
-</p-card>
+
+    </div>
+    <app-standard-form></app-standard-form>
+    <app-standard-form></app-standard-form>
+    <app-standard-form></app-standard-form>
+
+</div>
+

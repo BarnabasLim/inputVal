@@ -1,0 +1,38 @@
+<div class="widget__background">
+    <div class="widget__card">
+        <p-card>
+            <ng-template pTemplate="header">
+                <div class="card__header">
+                    <h2>{{headerString}}</h2>
+                    <p-inputSwitch [(ngModel)]="checked" onclick="toggleClicked()"></p-inputSwitch>
+                </div>
+            </ng-template>
+            <form [formGroup]="myForm" class="flex flex-column gap-4">
+
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="name">Name</label>
+                    <input pInputText id="name" aria-describedby="name-help" formControlName="name" />
+                    <small id="name-help">Enter your name</small>
+                </div>
+
+                <div *ngIf="checked">
+                    <input-val-status-table [myForm]="myForm.get('name')"></input-val-status-table>
+                </div>
+
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="alias">Alias</label>
+                    <input pInputText id="alias" aria-describedby="alias-help" formControlName="alias" />
+                    <small id="alias-help">Enter your alias</small>
+                </div>
+
+                <div *ngIf="checked">
+                    <input-val-status-table [myForm]="myForm.get('alias')"></input-val-status-table>
+                </div>
+
+                <p-button label="Submit"></p-button>
+            </form>
+            <ng-content></ng-content>
+        </p-card>
+    </div>
+
+</div>

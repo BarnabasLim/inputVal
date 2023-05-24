@@ -3,6 +3,8 @@ import { DOCUMENT } from '@angular/common';
 
 //Constants
 import { THEME } from 'src/theme/theme.constant';
+
+import { PrimeNGConfig } from 'primeng/api';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,19 +12,28 @@ import { THEME } from 'src/theme/theme.constant';
 })
 export class AppComponent {
   title = 'inputVal';
+  theme="";
+  theme_id=0
   constructor(
-    @Inject(DOCUMENT) private document:Document
-  ){}
+    @Inject(DOCUMENT) private document:Document,
+    private primengConfig: PrimeNGConfig
+  ){
+    // this.loopTheme()
+  }
 
-  public theme_id=0
+  ngOnInit() {
+    this.primengConfig.ripple = true;
+  }
+
   loopTheme(){
     let list_of_themes=Object.keys(THEME)
     this.theme_id+=1;
     if (this.theme_id>=list_of_themes.length){
       this.theme_id=0
     }
-    this.switchTheme(THEME[list_of_themes[this.theme_id]])
-    console.log(list_of_themes,THEME[list_of_themes[this.theme_id]])
+    this.theme=list_of_themes[this.theme_id]
+    this.switchTheme(THEME[this.theme])
+    console.log(list_of_themes,THEME[this.theme])
   }
 
   /**
