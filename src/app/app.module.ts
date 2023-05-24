@@ -4,20 +4,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { StandardFormComponent } from './standard-form/standard-form.component';
+import { StandardCardComponent } from './components/standard-card/standard-card.component';
+import { StandardPanelComponent } from './components/standard-panel/standard-panel.component';
 
 import { ButtonModule } from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
-import { InputValStatusTableComponent } from './input-val-status-table/input-val-status-table.component';
+import { InputValStatusTableComponent } from './components/input-val-status-table/input-val-status-table.component';
 import {InputSwitchModule} from 'primeng/inputswitch';
-
+import {PanelModule} from 'primeng/panel';
+import {MenuModule} from 'primeng/menu';
 @NgModule({
   declarations: [
     AppComponent,
-    StandardFormComponent,
-    InputValStatusTableComponent
+    InputValStatusTableComponent,
+    StandardCardComponent,
+    StandardPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,8 @@ import {InputSwitchModule} from 'primeng/inputswitch';
     InputTextModule,
     TableModule,
     InputSwitchModule,
+    PanelModule,
+    MenuModule
     
   ],
   providers: [],

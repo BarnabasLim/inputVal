@@ -1,0 +1,24 @@
+@import "../../styles/base/widget.component";
+.pi-check-circle{
+    color: limegreen;
+    font-weight: bold;
+}
+.pi-times-circle{
+    color: orangered;
+    font-weight: bold;
+}
+.status{
+    &--item{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        @include respond('sm'){
+            flex-direction: column;
+        }
+        &--text{
+            padding-right: 2px;
+        }
+    }
+    
+}

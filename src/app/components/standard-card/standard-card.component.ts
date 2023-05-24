@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-standard-form',
-  templateUrl: './standard-form.component.html',
-  styleUrls: ['./standard-form.component.scss']
+  selector: 'standard-card',
+  templateUrl: './standard-card.component.html',
+  styleUrls: ['./standard-card.component.scss']
 })
-export class StandardFormComponent implements OnInit {
+export class StandardCardComponent implements OnInit {
+
   @Input() headerString="Header content here";
   @Input() checked=false;
   @Output() checkedEmitter=new EventEmitter();
