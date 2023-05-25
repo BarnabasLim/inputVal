@@ -23,6 +23,7 @@ import {ToastModule} from 'primeng/toast';
 import { S01StatusPropertiesComponent } from './components/s01-status-properties/s01-status-properties.component';
 import { S02AngularValidatorsComponent } from './components/s02-angular-validators/s02-angular-validators.component';
 import { BSubmitButtonComponent } from './reusable-components/b-submit-button/b-submit-button.component';
+import { S03CustomValidatorsComponent } from './components/s03-custom-validators/s03-custom-validators.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BSubmitButtonComponent } from './reusable-components/b-submit-button/b-
     S01StatusPropertiesComponent,
     S02AngularValidatorsComponent,
     ValidatorToggleComponent,
-    BSubmitButtonComponent
+    BSubmitButtonComponent,
+    S03CustomValidatorsComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
   styleUrls: ['./s02-angular-validators.component.scss']
 })
 export class S02AngularValidatorsComponent implements OnInit {
-  public validators_object={'required':Validators.required,'email':Validators.email,'pattern':Validators.pattern(/^[a-zA-Z0-9\s]*$/),'minLength':Validators.minLength(3),'maxLength':Validators.maxLength(11)}
+  public validators_object={'required':{function:Validators.required, async:false},'email':{function:Validators.email, async:false},'pattern':{function:Validators.pattern(/^[a-zA-Z0-9\s]*$/), async:false},'minLength':{function:Validators.minLength(3), async:false},'maxLength':{function:Validators.maxLength(11), async:false}}
   public checked:boolean=false;
   
   public myForm:FormGroup;
@@ -17,15 +17,8 @@ export class S02AngularValidatorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm=this.fb.group({
-      name:['',Object.values(this.validators_object)],
+      name:['',Object.values(this.validators_object).map((item)=>item.function)],
       alias:['',[Validators.required]],
-      validators_active:this.fb.group({
-        'required':[true],
-        'email':[true],
-        'pattern':[true],
-        'minLength':[true],
-        'maxLength':[true]
-      })
     })
   }
 
