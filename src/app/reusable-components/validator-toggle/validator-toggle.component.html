@@ -1,0 +1,8 @@
+<form [formGroup]="myForm.get(this.specialValidatorControlNames)" class="validators--list">
+    <div *ngFor="let validator of validators_keys">
+            <div class="validators--item">
+                <p-inputSwitch (click)="toggleValidators()" formControlName="{{validator}}"></p-inputSwitch>
+                <div>{{validator}}</div>
+            </div>    
+    </div>
+</form>

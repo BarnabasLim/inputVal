@@ -1,26 +1,59 @@
 <standard-card [headerString]="'Angular Validators'" [checked]="checked" (checkedChange)="toggleClicked($event)">
     <form [formGroup]="myForm" class="flex flex-column gap-4">
+        <div *ngIf="checked">
+            <validator-toggle [myForm]="myForm" [controlName]="'name'" [validators_object]="validators_object"></validator-toggle>
+        </div>
 
         <div class="flex flex-column gap-2">
             <label htmlFor="name">Name</label>
             <input pInputText id="name" aria-describedby="name-help" formControlName="name" [maxlength]="11"/>
-            <small id="name-help">Enter your name</small>
-            <p-fieldset legend="myForm.get('name').errors" [toggleable]="true">
-                {{this.myForm?.get('name').errors|json}}
-            </p-fieldset>
+            <div *ngIf="myForm.get('name').invalid && (myForm.get('name').touched || myForm.get('name').dirty); else name_help">
+                <div *ngIf="myForm.get('name')?.errors" class="p-error">
+                    <small *ngIf="myForm.get('name')?.errors['required']">Enter your name</small>
+                    <small *ngIf="myForm.get('name')?.errors['email']">Enter your name (email)</small>
+                    <small *ngIf="myForm.get('name')?.errors['pattern']">Enter name without invalid characters</small>
+                    <small *ngIf="myForm.get('name')?.errors['minlength']">Enter your name (min 3 characters)</small>
+                    <small *ngIf="myForm.get('name')?.errors['maxlength']">Enter your name (max 11 characters)</small>
+                </div>
+            </div>
+            <ng-template #name_help><small  id="name-help">Enter your name</small></ng-template>
         </div>
     
         <div *ngIf="checked">
+            <p-panel header="myForm.get('name').errors" [toggleable]="true">
+                <code>
+                    <pre>{{this.myForm?.get('name').errors|json}}</pre>
+                </code>
+            </p-panel>
             <input-val-status-table [myForm]="myForm.get('name')"></input-val-status-table>
+        </div>
+
+        
+        <div *ngIf="checked">
+            <validator-toggle [myForm]="myForm" [controlName]="'alias'" [validators_object]="validators_object"></validator-toggle>
         </div>
     
         <div class="flex flex-column gap-2">
             <label htmlFor="alias">Alias</label>
             <input pInputText id="alias" aria-describedby="alias-help" formControlName="alias" />
-            <small id="alias-help">Enter your alias</small>
+            <div *ngIf="myForm.get('alias').invalid && (myForm.get('alias').touched || myForm.get('alias').dirty); else alias_help">
+                <div *ngIf="myForm.get('name')?.errors" class="p-error">
+                    <small *ngIf="myForm.get('alias')?.errors['required']">Enter your alias</small>
+                    <small *ngIf="myForm.get('alias')?.errors['email']">Enter your alias (email)</small>
+                    <small *ngIf="myForm.get('alias')?.errors['pattern']">Enter alias without invalid characters</small>
+                    <small *ngIf="myForm.get('alias')?.errors['minlength']">Enter your alias (min 3 characters)</small>
+                    <small *ngIf="myForm.get('alias')?.errors['maxlength']">Enter your alias (max 11 characters)</small>
+                </div>
+            </div>
+            <ng-template #alias_help><small  id="alias_help">Enter your alias</small></ng-template>
         </div>
     
         <div *ngIf="checked">
+            <p-panel header="myForm.get('alias').errors" [toggleable]="true">
+                <code>
+                    <pre>{{this.myForm?.get('alias').errors|json}}</pre>
+                </code>
+            </p-panel>
             <input-val-status-table [myForm]="myForm.get('alias')"></input-val-status-table>
         </div>
     

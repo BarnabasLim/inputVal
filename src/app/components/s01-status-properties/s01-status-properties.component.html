@@ -1,5 +1,5 @@
 <standard-card [headerString]="'Status Properties'" [checked]="checked" (checkedChange)="toggleClicked($event)">
-    <form [formGroup]="myForm" class="flex flex-column gap-4">
+    <form [formGroup]="myForm" class="flex flex-column gap-4" (ngSubmit)="onSubmit()">
 
         <div class="flex flex-column gap-2">
             <label htmlFor="name">Name</label>
@@ -21,6 +21,16 @@
             <input-val-status-table [myForm]="myForm.get('alias')"></input-val-status-table>
         </div>
     
-        <p-button label="Submit"></p-button>
+        <p-button label="Submit" type="submit"></p-button>
+        <p-panel header="myForm" [toggleable]="true">
+            <code>
+                <pre>myForm?.value:</pre>
+                <pre>{{this.myForm?.value|json}}</pre>
+                <pre>myForm?.valid:</pre>
+                <pre>{{this.myForm?.valid|json}}</pre>
+            </code>
+        </p-panel>
+        <p-message severity="success" text="Message Content"></p-message> 
+        <p-message severity="error" text="Message Content"></p-message> 
     </form>
 </standard-card>

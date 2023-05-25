@@ -16,9 +16,11 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {PanelModule} from 'primeng/panel';
 import {MenuModule} from 'primeng/menu';
 import {FieldsetModule} from 'primeng/fieldset';
+import {MessageModule} from 'primeng/message';
 
 import { S01StatusPropertiesComponent } from './components/s01-status-properties/s01-status-properties.component';
 import { S02AngularValidatorsComponent } from './components/s02-angular-validators/s02-angular-validators.component';
+import { ValidatorToggleComponent } from './reusable-components/validator-toggle/validator-toggle.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import { S02AngularValidatorsComponent } from './components/s02-angular-validato
     StandardCardComponent,
     StandardPanelComponent,
     S01StatusPropertiesComponent,
-    S02AngularValidatorsComponent
+    S02AngularValidatorsComponent,
+    ValidatorToggleComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { S02AngularValidatorsComponent } from './components/s02-angular-validato
     InputSwitchModule,
     PanelModule,
     MenuModule,
-    FieldsetModule
+    FieldsetModule,
+    MessageModule
     
   ],
   providers: [],

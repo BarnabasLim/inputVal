@@ -10,6 +10,7 @@ export class S01StatusPropertiesComponent implements OnInit {
   //Things to do Reset Form once complete
   //Show results of forms
   public checked:boolean=false;
+
   public myForm:FormGroup;
   constructor(
     public fb:FormBuilder
@@ -25,10 +26,15 @@ export class S01StatusPropertiesComponent implements OnInit {
   get name(){
     return this.myForm.get('name')
   }
+  get alias(){
+    return this.myForm.get('alias')
+  }
 
+  onSubmit(){
+    console.log("submit ")
+  }
   toggleClicked($event){
     this.checked=$event
-    console.log(this.checked)
   }
 
 }
