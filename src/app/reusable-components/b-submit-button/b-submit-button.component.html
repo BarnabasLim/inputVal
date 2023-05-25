@@ -1,5 +1,5 @@
 <div class="flex flex-column gap-4">
-    <p-toast></p-toast>
+    <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
     <div>
         <button pButton type="button" *ngIf="!reset" label="Submit" type="submit" (click)="onSubmit()" class="p-button-info"></button>
         <button pButton type="button" *ngIf="reset" label="Reset" (click)="onReset()" class="p-button-success"></button> 
