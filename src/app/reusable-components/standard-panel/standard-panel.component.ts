@@ -9,13 +9,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class StandardPanelComponent implements OnInit {
   @Input() headerString="Header content here";
   @Input() checked=false;
-  @Output() checkedEmitter=new EventEmitter();
+  @Output() checkedChange=new EventEmitter();
   items = []
   constructor() { }
 
   ngOnInit(): void {
   }
   toggleClicked(){
-    this.checkedEmitter.emit(this.checked);
+    this.checkedChange.emit(this.checked);
   }
 }

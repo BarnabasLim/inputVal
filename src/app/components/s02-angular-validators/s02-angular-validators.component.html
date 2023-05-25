@@ -1,0 +1,29 @@
+<standard-card [headerString]="'Angular Validators'" [checked]="checked" (checkedChange)="toggleClicked($event)">
+    <form [formGroup]="myForm" class="flex flex-column gap-4">
+
+        <div class="flex flex-column gap-2">
+            <label htmlFor="name">Name</label>
+            <input pInputText id="name" aria-describedby="name-help" formControlName="name" [maxlength]="11"/>
+            <small id="name-help">Enter your name</small>
+            <p-fieldset legend="myForm.get('name').errors" [toggleable]="true">
+                {{this.myForm?.get('name').errors|json}}
+            </p-fieldset>
+        </div>
+    
+        <div *ngIf="checked">
+            <input-val-status-table [myForm]="myForm.get('name')"></input-val-status-table>
+        </div>
+    
+        <div class="flex flex-column gap-2">
+            <label htmlFor="alias">Alias</label>
+            <input pInputText id="alias" aria-describedby="alias-help" formControlName="alias" />
+            <small id="alias-help">Enter your alias</small>
+        </div>
+    
+        <div *ngIf="checked">
+            <input-val-status-table [myForm]="myForm.get('alias')"></input-val-status-table>
+        </div>
+    
+        <p-button label="Submit"></p-button>
+    </form>
+</standard-card>

@@ -1,0 +1,14 @@
+<div class="widget__background">
+    <div class="widget__card">
+        <p-card>
+            <ng-template pTemplate="header">
+                <div class="card__header">
+                    <h2>{{headerString}}</h2>
+                    <p-inputSwitch [(ngModel)]="checked" (click)="toggleClicked()"></p-inputSwitch>
+                </div>
+            </ng-template>
+            <ng-content></ng-content>
+        </p-card>
+    </div>
+
+</div>
