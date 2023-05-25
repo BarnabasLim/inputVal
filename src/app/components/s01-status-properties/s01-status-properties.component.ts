@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-s01-status-properties',
   templateUrl: './s01-status-properties.component.html',
-  styleUrls: ['./s01-status-properties.component.scss']
+  styleUrls: ['./s01-status-properties.component.scss'],
+
 })
 export class S01StatusPropertiesComponent implements OnInit {
   //Things to do Reset Form once complete
@@ -13,7 +14,7 @@ export class S01StatusPropertiesComponent implements OnInit {
 
   public myForm:FormGroup;
   constructor(
-    public fb:FormBuilder
+    public fb:FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -30,9 +31,6 @@ export class S01StatusPropertiesComponent implements OnInit {
     return this.myForm.get('alias')
   }
 
-  onSubmit(){
-    console.log("submit ")
-  }
   toggleClicked($event){
     this.checked=$event
   }

@@ -1,0 +1,17 @@
+<div class="flex flex-column gap-4">
+    <p-toast></p-toast>
+    <div>
+        <button pButton type="button" *ngIf="!reset" label="Submit" type="submit" (click)="onSubmit()" class="p-button-info"></button>
+        <button pButton type="button" *ngIf="reset" label="Reset" (click)="onReset()" class="p-button-success"></button> 
+    </div>
+
+    <p-panel header="myForm" [toggleable]="true" *ngIf="checked || reset">
+        <code>
+            <pre>myForm?.value:</pre>
+            <pre>{{this.myForm?.value|json}}</pre>
+            <pre>myForm?.valid:</pre>
+            <pre>{{this.myForm?.valid|json}}</pre>
+        </code>
+    </p-panel>
+</div>
+

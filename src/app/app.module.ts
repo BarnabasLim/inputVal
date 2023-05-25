@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { StandardCardComponent } from './reusable-components/standard-card/standard-card.component';
 import { StandardPanelComponent } from './reusable-components/standard-panel/standard-panel.component';
 import { InputValStatusTableComponent } from './reusable-components/input-val-status-table/input-val-status-table.component';
+import { ValidatorToggleComponent } from './reusable-components/validator-toggle/validator-toggle.component';
 
 import { ButtonModule } from 'primeng/button';
 import {CardModule} from 'primeng/card';
@@ -17,10 +18,12 @@ import {PanelModule} from 'primeng/panel';
 import {MenuModule} from 'primeng/menu';
 import {FieldsetModule} from 'primeng/fieldset';
 import {MessageModule} from 'primeng/message';
+import {ToastModule} from 'primeng/toast';
 
 import { S01StatusPropertiesComponent } from './components/s01-status-properties/s01-status-properties.component';
 import { S02AngularValidatorsComponent } from './components/s02-angular-validators/s02-angular-validators.component';
-import { ValidatorToggleComponent } from './reusable-components/validator-toggle/validator-toggle.component';
+import { BSubmitButtonComponent } from './reusable-components/b-submit-button/b-submit-button.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,8 @@ import { ValidatorToggleComponent } from './reusable-components/validator-toggle
     StandardPanelComponent,
     S01StatusPropertiesComponent,
     S02AngularValidatorsComponent,
-    ValidatorToggleComponent
+    ValidatorToggleComponent,
+    BSubmitButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ import { ValidatorToggleComponent } from './reusable-components/validator-toggle
     PanelModule,
     MenuModule,
     FieldsetModule,
-    MessageModule
+    MessageModule,
+    ToastModule
     
   ],
   providers: [],
