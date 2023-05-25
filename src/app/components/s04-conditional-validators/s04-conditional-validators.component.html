@@ -1,8 +1,8 @@
 <standard-card [headerString]="'Conditional Validators'" [checked]="checked" (checkedChange)="toggleClicked($event)">
     <form [formGroup]="myForm" class="flex flex-column gap-4">
-        <div *ngIf="checked">
+        <!-- <div *ngIf="checked">
             <validator-toggle [myForm]="myForm" [controlName]="'name'" [validators_object]="validators_object"></validator-toggle>
-        </div>
+        </div> -->
 
         <div class="flex flex-column gap-2">
             <label htmlFor="name">Name</label>
@@ -32,9 +32,9 @@
         </div>
 
         
-        <div *ngIf="checked">
+        <!-- <div *ngIf="checked">
             <validator-toggle [myForm]="myForm" [controlName]="'alias'" [validators_object]="validators_object"></validator-toggle>
-        </div>
+        </div> -->
     
         <div class="flex flex-column gap-2">
             <label htmlFor="alias">Alias</label>
