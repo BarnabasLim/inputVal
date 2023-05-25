@@ -35,8 +35,8 @@ export class ValidatorToggleComponent implements OnInit {
 
   generateValidatorsFns(){
     let validators_Fns=[]
-    Object.keys(this.myForm.get('validators_active').value).forEach(key => {
-      if(this.myForm.get('validators_active').value[key]){
+    Object.keys(this.myForm.get(this.specialValidatorControlNames).value).forEach(key => {
+      if(this.myForm.get(this.specialValidatorControlNames).value[key]){
         validators_Fns.push(this.validators_object[key])
       }
     });
