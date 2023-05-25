@@ -52,8 +52,8 @@
                   "inject": false
                 },
                 {
-                  "input": "src/theme/theme-ad-light-indigo.scss",
-                  "bundleName": "ad-light-indigo",
+                  "input": "src/theme/theme-lara-dark-indigo.scss",
+                  "bundleName": "lara-dark-indigo",
                   "inject": false
                 },
                 {

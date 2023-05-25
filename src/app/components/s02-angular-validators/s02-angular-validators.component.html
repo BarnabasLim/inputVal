@@ -37,7 +37,7 @@
             <label htmlFor="alias">Alias</label>
             <input pInputText id="alias" aria-describedby="alias-help" formControlName="alias" />
             <div *ngIf="myForm.get('alias').invalid && (myForm.get('alias').touched || myForm.get('alias').dirty); else alias_help">
-                <div *ngIf="myForm.get('name')?.errors" class="p-error">
+                <div *ngIf="myForm.get('alias')?.errors" class="p-error">
                     <small *ngIf="myForm.get('alias')?.errors['required']">Enter your alias</small>
                     <small *ngIf="myForm.get('alias')?.errors['email']">Enter your alias (email)</small>
                     <small *ngIf="myForm.get('alias')?.errors['pattern']">Enter alias without invalid characters</small>

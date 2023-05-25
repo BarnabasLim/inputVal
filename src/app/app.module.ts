@@ -24,6 +24,7 @@ import { S01StatusPropertiesComponent } from './components/s01-status-properties
 import { S02AngularValidatorsComponent } from './components/s02-angular-validators/s02-angular-validators.component';
 import { BSubmitButtonComponent } from './reusable-components/b-submit-button/b-submit-button.component';
 import { S03CustomValidatorsComponent } from './components/s03-custom-validators/s03-custom-validators.component';
+import { S04ConditionalValidatorsComponent } from './components/s04-conditional-validators/s04-conditional-validators.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { S03CustomValidatorsComponent } from './components/s03-custom-validators
     S02AngularValidatorsComponent,
     ValidatorToggleComponent,
     BSubmitButtonComponent,
-    S03CustomValidatorsComponent
+    S03CustomValidatorsComponent,
+    S04ConditionalValidatorsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<standard-card [headerString]="'Custom Validators'" [checked]="checked" (checkedChange)="toggleClicked($event)">
+<standard-card [headerString]="'Conditional Validators'" [checked]="checked" (checkedChange)="toggleClicked($event)">
     <form [formGroup]="myForm" class="flex flex-column gap-4">
         <div *ngIf="checked">
             <validator-toggle [myForm]="myForm" [controlName]="'name'" [validators_object]="validators_object"></validator-toggle>
@@ -15,8 +15,6 @@
             <div *ngIf="myForm.get('name').invalid && (myForm.get('name').touched || myForm.get('name').dirty); else name_help">
                 <div *ngIf="myForm.get('name')?.errors" class="p-error">
                     <small *ngIf="myForm.get('name')?.errors['required']">Enter your name</small>
-                    <small *ngIf="myForm.get('name')?.errors['forbiddenName']">Enter your name without variation of "NA", "NIL" or"NULL"</small>
-                    <small *ngIf="myForm.get('name')?.errors['asyncDuplicate']">Enter your name, "{{myForm.get('name')?.errors['asyncDuplicate']?.value}}" is already taken</small>
                 </div>
             </div>
             <ng-template #name_help><small  id="name-help">Enter your name</small></ng-template>
@@ -29,8 +27,6 @@
                     <pre>{{this.myForm?.get('name').errors|json}}</pre>
                     <pre>this.myForm?.get('name').pending:</pre>
                     <pre>{{this.myForm?.get('name').pending|json}}</pre>
-                    <pre>asyncDupCheck:</pre>
-                    <pre>{{name_async_val_count}}</pre>
                 </code>
             </p-panel>
         </div>
@@ -51,8 +47,6 @@
             <div *ngIf="myForm.get('alias').invalid && (myForm.get('alias').touched || myForm.get('alias').dirty); else alias_help">
                 <div *ngIf="myForm.get('alias')?.errors" class="p-error">
                     <small *ngIf="myForm.get('alias')?.errors['required']">Enter your alias</small>
-                    <small *ngIf="myForm.get('alias')?.errors['forbiddenName']">Enter your alias without variation of "NA", "NIL" or"NULL"</small>
-                    <small *ngIf="myForm.get('alias')?.errors['asyncDuplicate']">Enter your alias, "{{myForm.get('alias')?.errors['asyncDuplicate']?.value}}" is already taken</small>
                 </div>
             </div>
             <ng-template #alias_help><small  id="alias_help">Enter your alias</small></ng-template>
@@ -65,8 +59,6 @@
                     <pre>{{this.myForm?.get('alias').errors|json}}</pre>
                     <pre>this.myForm?.get('alias').pending:</pre>
                     <pre>{{this.myForm?.get('alias').pending|json}}</pre>
-                    <pre>asyncDupCheck:</pre>
-                    <pre>{{alias_async_val_count}}</pre>
                 </code>
             </p-panel>
         </div>

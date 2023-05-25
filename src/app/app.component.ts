@@ -14,10 +14,13 @@ export class AppComponent {
   title = 'inputVal';
   theme="";
   theme_id=0
+  THEME=THEME
+  list_of_themes=[]
   constructor(
     @Inject(DOCUMENT) private document:Document,
     private primengConfig: PrimeNGConfig
   ){
+    this.list_of_themes=Object.keys(THEME)
     // this.loopTheme()
   }
 
@@ -26,14 +29,14 @@ export class AppComponent {
   }
 
   loopTheme(){
-    let list_of_themes=Object.keys(THEME)
+    this.list_of_themes=Object.keys(THEME)
     this.theme_id+=1;
-    if (this.theme_id>=list_of_themes.length){
+    if (this.theme_id>=this.list_of_themes.length){
       this.theme_id=0
     }
-    this.theme=list_of_themes[this.theme_id]
-    this.switchTheme(THEME[this.theme])
-    console.log(list_of_themes,THEME[this.theme])
+    this.theme=this.list_of_themes[this.theme_id]
+    this.switchTheme(THEME[this.theme]['stylesheet'])
+    console.log(this.list_of_themes,THEME[this.theme])
   }
 
   /**

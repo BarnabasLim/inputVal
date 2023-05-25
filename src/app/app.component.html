@@ -4,11 +4,19 @@
             <p-card>
                 <ng-template pTemplate="header">
                     <div class="card__header">
-                        Header content here
+                        <h2>Input Validation</h2>
                     </div>
                 </ng-template>
-                <p-button label="Submit" (click)="loopTheme()"></p-button>
-                <p>{{theme}}</p>
+                <div class="theme--list">
+                    <div *ngFor="let theme_item_key of list_of_themes">
+                        <div class="theme--item"(click)="switchTheme(THEME[theme_item_key]['stylesheet'])">
+                            <img src="{{THEME[theme_item_key]['iconUrl']}}" alt="{{THEME[theme_item_key]['stylesheet']}}"/>
+                        </div>    
+                    </div>
+                </div>
+
+                <!-- <p-button label="Submit" (click)="loopTheme()"></p-button>
+                <p>{{theme}}</p> -->
             </p-card>
         </div>
 
@@ -16,6 +24,7 @@
     <app-s01-status-properties></app-s01-status-properties>
     <app-s02-angular-validators></app-s02-angular-validators>
     <app-s03-custom-validators></app-s03-custom-validators>
+    <app-s04-conditional-validators></app-s04-conditional-validators>
     <standard-card></standard-card>
     <standard-panel></standard-panel>
 </div>

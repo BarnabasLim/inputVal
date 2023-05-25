@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import {MessageService} from 'primeng/api';
 
@@ -11,6 +11,7 @@ import {MessageService} from 'primeng/api';
 export class BSubmitButtonComponent implements OnInit {
   @Input() myForm:FormGroup|null=null;
   @Input() checked:boolean=false;
+  @Output() resetEmitted:EventEmitter<boolean>=new EventEmitter();
   public reset=false;
   constructor(
     private messageService: MessageService
@@ -31,7 +32,9 @@ export class BSubmitButtonComponent implements OnInit {
   }
   onReset(){
     this.reset=false;
-    this.myForm.reset()
+    //Reset from without changing Validators
+    this.myForm.reset({...this.myForm.value,'name':'','alias':''})
+    this.resetEmitted.emit()
   }
 
   public markAllControlsAsDirty(abstractControls: AbstractControl[]): void {
