@@ -32,7 +32,6 @@ export class S02AngularValidatorsComponent implements OnInit {
 
   toggleClicked($event){
     this.checked=$event
-    console.log(this.checked)
   }
 
   

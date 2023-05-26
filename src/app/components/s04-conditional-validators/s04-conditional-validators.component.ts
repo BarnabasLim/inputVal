@@ -34,7 +34,7 @@ export class S04ConditionalValidatorsComponent implements OnInit {
   ngOnDestroy():void{
     this.unsubscriber()
   }
-  
+
   get name(){
     return this.myForm.get('name')
   }
@@ -55,7 +55,6 @@ export class S04ConditionalValidatorsComponent implements OnInit {
   }
   toggleClicked($event){
     this.checked=$event
-    console.log(this.checked)
   }
 
   onReset(){

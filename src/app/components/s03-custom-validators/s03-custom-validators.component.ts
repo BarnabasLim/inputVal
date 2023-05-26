@@ -54,7 +54,6 @@ export class S03CustomValidatorsComponent implements OnInit {
 
   toggleClicked($event){
     this.checked=$event
-    console.log(this.checked)
   }
 
   onReset(){

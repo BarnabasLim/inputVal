@@ -1,0 +1,97 @@
+<standard-card [headerString]="'Restrict Inputs'" [checked]="checked" (checkedChange)="toggleClicked($event)">
+    <form [formGroup]="myForm" class="flex flex-column gap-4">
+        <!-- <div *ngIf="checked">
+            <validator-toggle [myForm]="myForm" [controlName]="'name'" [validators_object]="validators_object"></validator-toggle>
+        </div> -->
+
+        <div class="flex flex-column gap-2">
+            <label htmlFor="name">Name</label>
+            <div class="{{myForm.get('name').pending?'p-input-icon-right':''}} input__async">
+                <ng-container *ngIf="myForm.get('name').pending">
+                    <i class="pi pi-spin pi-spinner"></i>
+                </ng-container>
+                <input pInputText id="name" aria-describedby="name-help" formControlName="name" [maxlength]="11"
+                (keydown)="onKeydown(myForm.get('name'),$event)" (keypress)="onKeypress(myForm.get('name'),$event)" (input)="onInput(myForm.get('name'),$event)" (keyup)="onKeyup(myForm.get('name'),$event)"/>
+            </div>
+            <div *ngIf="myForm.get('name').invalid && (myForm.get('name').touched || myForm.get('name').dirty); else name_help">
+                <div *ngIf="myForm.get('name')?.errors" class="p-error">
+                    <small *ngIf="myForm.get('name')?.errors['required']">Enter your name</small>
+                </div>
+            </div>
+            <ng-template #name_help><small  id="name-help">Enter your name</small></ng-template>
+        </div>
+    
+        <div *ngIf="checked">
+            <p-panel header="console" [toggleable]="true">
+                <code>
+                    <pre>this.myForm?.get('name').errors:</pre>
+                    <pre>{{this.myForm?.get('name').errors|json}}</pre>
+                    <pre>this.myForm?.get('name').pending:</pre>
+                    <pre>{{this.myForm?.get('name').pending|json}}</pre>
+                </code>
+            </p-panel>
+            <p-panel header="console" [toggleable]="true">
+                <ng-template pTemplate="icons">
+                    <button pButton class="p-panel-header-icon p-link" (click)="ResetEvent()">
+                        <span class="pi pi-refresh"></span>
+                    </button>
+                </ng-template>
+                <p-timeline [value]="this.orderOfEvents">
+                    <!-- <ng-template pTemplate="content" let-event>
+                        <small class="p-text-secondary">{{event.id+'_'+event.name}}</small>
+                    </ng-template> -->
+                    <ng-template pTemplate="marker" let-event>
+                        <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+                            <i [ngClass]="event.icon"></i>
+                        </span>
+                    </ng-template>
+                    <ng-template pTemplate="content" let-event>
+                        <code>
+                            <pre>{{event.event|json}}</pre>
+                        </code>
+                    </ng-template>
+                    <ng-template pTemplate="content" let-event>
+                        <p-card [subheader]= "event.id+'_'+event.name+'\n'+'formControl.value:'+event.value" class="event--item">
+                            <pre>{{event.event|json}}</pre>
+                        </p-card>
+                    </ng-template>
+                </p-timeline>   
+            </p-panel>
+
+        </div>
+
+        
+        <!-- <div *ngIf="checked">
+            <validator-toggle [myForm]="myForm" [controlName]="'alias'" [validators_object]="validators_object"></validator-toggle>
+        </div> -->
+    
+        <div class="flex flex-column gap-2">
+            <label htmlFor="alias">Alias</label>
+            <div class="{{myForm.get('alias').pending?'p-input-icon-right':''}} input__async">
+                    <ng-container *ngIf="myForm.get('alias').pending">
+                        <i class="pi pi-spin pi-spinner"></i>
+                    </ng-container>
+                    <input pInputText id="alias" aria-describedby="alias-help" formControlName="alias" />
+            </div>
+            <div *ngIf="myForm.get('alias').invalid && (myForm.get('alias').touched || myForm.get('alias').dirty); else alias_help">
+                <div *ngIf="myForm.get('alias')?.errors" class="p-error">
+                    <small *ngIf="myForm.get('alias')?.errors['required']">Enter your alias</small>
+                </div>
+            </div>
+            <ng-template #alias_help><small  id="alias_help">Enter your alias</small></ng-template>
+        </div>
+    
+        <div *ngIf="checked">
+            <p-panel header="console" [toggleable]="true">
+                <code>
+                    <pre>this.myForm?.get('alias').errors:</pre>
+                    <pre>{{this.myForm?.get('alias').errors|json}}</pre>
+                    <pre>this.myForm?.get('alias').pending:</pre>
+                    <pre>{{this.myForm?.get('alias').pending|json}}</pre>
+                </code>
+            </p-panel>
+        </div>
+    
+        <b-submit-button [myForm]="myForm" [checked]="checked" (resetEmitted)="onReset()"></b-submit-button>
+    </form>
+</standard-card>

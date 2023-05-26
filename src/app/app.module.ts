@@ -19,12 +19,14 @@ import {MenuModule} from 'primeng/menu';
 import {FieldsetModule} from 'primeng/fieldset';
 import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
+import {TimelineModule} from 'primeng/timeline';
 
 import { S01StatusPropertiesComponent } from './components/s01-status-properties/s01-status-properties.component';
 import { S02AngularValidatorsComponent } from './components/s02-angular-validators/s02-angular-validators.component';
 import { BSubmitButtonComponent } from './reusable-components/b-submit-button/b-submit-button.component';
 import { S03CustomValidatorsComponent } from './components/s03-custom-validators/s03-custom-validators.component';
 import { S04ConditionalValidatorsComponent } from './components/s04-conditional-validators/s04-conditional-validators.component';
+import { S05RestictInputComponent } from './components/s05-restict-input/s05-restict-input.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { S04ConditionalValidatorsComponent } from './components/s04-conditional-
     ValidatorToggleComponent,
     BSubmitButtonComponent,
     S03CustomValidatorsComponent,
-    S04ConditionalValidatorsComponent
+    S04ConditionalValidatorsComponent,
+    S05RestictInputComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { S04ConditionalValidatorsComponent } from './components/s04-conditional-
     MenuModule,
     FieldsetModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    TimelineModule
     
   ],
   providers: [],
