@@ -67,7 +67,7 @@ export class S05RestictInputComponent implements OnInit {
 
   onKeydown(formControl:AbstractControl,$event:any, logEvents=false, retrict=false){
     if(logEvents){
-      this.logEvents($event, formControl)
+      this.logEvents($event, formControl,'keydown')
     }
 
     if(retrict && this.myForm.get('keydown').value){
@@ -76,7 +76,7 @@ export class S05RestictInputComponent implements OnInit {
   }
   onKeypress(formControl:AbstractControl,$event:any, logEvents=false, retrict=false){
     if(logEvents){
-      this.logEvents($event, formControl)
+      this.logEvents($event, formControl,'keypress')
     }
     if(retrict && this.myForm.get('keypress').value){
       return this.restrictKeysEvents($event, formControl)
@@ -84,7 +84,7 @@ export class S05RestictInputComponent implements OnInit {
   }
   onInput(formControl:AbstractControl, $event:any, logEvents=false, retrict=false){
     if(logEvents){
-      this.logEvents($event, formControl)
+      this.logEvents($event, formControl,'input')
     }
     if(retrict && this.myForm.get('input').value){
       this.restrictInputEvents($event,formControl)
@@ -92,7 +92,7 @@ export class S05RestictInputComponent implements OnInit {
   }
   onKeyup(formControl:AbstractControl, $event:any, logEvents=false, retrict=false){
     if(logEvents){
-      this.logEvents($event, formControl)
+      this.logEvents($event, formControl,'keyup')
     }
     if(retrict && this.myForm.get('keyup').value){
       return this.restrictKeysEvents($event, formControl)
@@ -180,9 +180,28 @@ export class S05RestictInputComponent implements OnInit {
     }
   }
 
-  logEvents($event, formControl:AbstractControl){
+  logEvents($event, formControl:AbstractControl,event_type){
+    let logged_item={}
+    switch(event_type){
+      case 'keydown':
+        logged_item= {id:this.eventCounter,name: '(keydown)', event:this.constructEvent($event),value:formControl.value, color: '#9C27B0', icon: PrimeIcons.ARROW_CIRCLE_DOWN}
+        break;
+      case 'keypress':
+        logged_item= {id:this.eventCounter,name: '(keypress)', event:this.constructEvent($event),value:formControl.value , color: '#673AB7', icon: PrimeIcons.STOP_CIRCLE}
+        break;
+      case 'input':
+        logged_item= {id:this.eventCounter,name: '(input)', event:this.constructEvent($event),value:formControl.value, color: '#FF9800' , icon: PrimeIcons.INFO_CIRCLE}
+        break;
+      case 'keyup':
+        logged_item= {id:this.eventCounter,name: '(keyup)', event:this.constructEvent($event),value:formControl.value, color: '#607D8B' , icon: PrimeIcons.ARROW_CIRCLE_UP}
+        break;
+      default:
+        logged_item={}
+        break;
+
+    }
     console.log(this.eventCounter,":", formControl.value,":",$event)
-    this.orderOfEvents.push({id:this.eventCounter,name: '(keydown)', event:this.constructEvent($event),value:formControl.value, color: '#9C27B0', icon: PrimeIcons.ARROW_CIRCLE_DOWN})
+    this.orderOfEvents.push(logged_item)
     this.eventCounter+=1
     this.orderOfEvents=cloneDeep(this.orderOfEvents)
   }
