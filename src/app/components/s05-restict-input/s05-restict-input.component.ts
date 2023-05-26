@@ -10,6 +10,9 @@ import {cloneDeep} from 'lodash';
 })
 export class S05RestictInputComponent implements OnInit {
   public validators_object={'required':{function:Validators.required, async:false},}
+  public toggles_val={'keydown':false,'keypress':false, 'input': true, 'keyup':false, 'maxLength5':true, 'illegalChar':true}
+  public toggles_keys=[]
+  public console_logs=''
   public checked:boolean=false;
   public orderOfEvents=[];
   public eventCounter=0;
@@ -26,6 +29,15 @@ export class S05RestictInputComponent implements OnInit {
       name:['',[Validators.required]],
       alias:['', [Validators.required]]
     })
+
+    Object.keys(this.toggles_val).forEach((key)=>{
+      let control=this.myForm as FormGroup
+      if( !control.contains(key)){
+        control.addControl(key, new FormControl(this.toggles_val[key]))
+      }
+    })
+
+    this.toggles_keys=Object.keys(this.toggles_val)
   }
   
   get name(){
@@ -52,32 +64,126 @@ export class S05RestictInputComponent implements OnInit {
       }
     }
   }
-  onKeydown(formControl:AbstractControl,$event:any){
-    console.log(this.eventCounter,":", formControl.value,":",$event)
-    this.orderOfEvents.push({id:this.eventCounter,name: '(keydown)', event:this.constructEvent($event),value:formControl.value, color: '#9C27B0', icon: PrimeIcons.ARROW_CIRCLE_DOWN})
-    this.eventCounter+=1
-    this.orderOfEvents=cloneDeep(this.orderOfEvents)
+
+  onKeydown(formControl:AbstractControl,$event:any, logEvents=false, retrict=false){
+    if(logEvents){
+      this.logEvents($event, formControl)
+    }
+
+    if(retrict && this.myForm.get('keydown').value){
+      return this.restrictKeysEvents($event, formControl)
+    }    
   }
-  onKeypress(formControl:AbstractControl,$event:any){
-    console.log(this.eventCounter,":", formControl.value,":",$event)
-    this.orderOfEvents.push({id:this.eventCounter,name: '(keypress)', event:this.constructEvent($event),value:formControl.value , color: '#673AB7', icon: PrimeIcons.STOP_CIRCLE})
-    this.eventCounter+=1
-    this.orderOfEvents=cloneDeep(this.orderOfEvents)
+  onKeypress(formControl:AbstractControl,$event:any, logEvents=false, retrict=false){
+    if(logEvents){
+      this.logEvents($event, formControl)
+    }
+    if(retrict && this.myForm.get('keypress').value){
+      return this.restrictKeysEvents($event, formControl)
+    }    
   }
-  onInput(formControl:AbstractControl, $event:any){
-    console.log(this.eventCounter,":", formControl.value,":",$event)
-    this.orderOfEvents.push({id:this.eventCounter,name: '(input)', event:this.constructEvent($event),value:formControl.value, color: '#FF9800' , icon: PrimeIcons.INFO_CIRCLE})
-    this.eventCounter+=1
-    this.orderOfEvents=cloneDeep(this.orderOfEvents)
+  onInput(formControl:AbstractControl, $event:any, logEvents=false, retrict=false){
+    if(logEvents){
+      this.logEvents($event, formControl)
+    }
+    if(retrict && this.myForm.get('input').value){
+      this.restrictInputEvents($event,formControl)
+    }
   }
-  onKeyup(formControl:AbstractControl, $event:any){
-    console.log(this.eventCounter,":", formControl.value,":",$event)
-    this.orderOfEvents.push({id:this.eventCounter,name: '(keyup)', event:this.constructEvent($event),value:formControl.value, color: '#607D8B' , icon: PrimeIcons.ARROW_CIRCLE_UP})
-    this.eventCounter+=1
-    this.orderOfEvents=cloneDeep(this.orderOfEvents)
+  onKeyup(formControl:AbstractControl, $event:any, logEvents=false, retrict=false){
+    if(logEvents){
+      this.logEvents($event, formControl)
+    }
+    if(retrict && this.myForm.get('keyup').value){
+      return this.restrictKeysEvents($event, formControl)
+    }    
   }
   ResetEvent(){
     this.orderOfEvents=[]
     this.eventCounter=0
+  }
+
+  restrictKeysEvents($event, formControl:AbstractControl){
+    this.console_logs='';
+    const inp=($event.key);
+    formControl=formControl as FormControl
+    let eventHappen=true;
+
+    //illegal Char Check
+    if(this.myForm.get('illegalChar').value){
+      let pattern=/^[a-zA-Z0-9\s]*$/
+      if(!pattern.test(inp)){
+        eventHappen=false
+      }
+    }
+
+    //max Length Check
+    if(this.myForm.get('maxLength5').value){
+      if(this.myForm.get('alias')?.value?.length && this.myForm.get('alias')?.value?.length>=3){
+        eventHappen=false
+      }
+
+    }
+    this.console_logs+="restrictKeysEvents event.key:"+$event.key+ eventHappen;
+    console.log("restrictKeysEvents",$event.key, eventHappen)
+    return eventHappen
+
+  }
+
+  restrictInputEvents($event,formControl:AbstractControl){
+    this.console_logs='';
+    if($event.inputType=='insertFromPaste'){
+
+    }else{
+      if(formControl){
+        formControl=formControl as FormControl
+        //illegal Char Check
+        if(this.myForm.get('illegalChar').value){
+          let inp:string=formControl.value
+          let pattern=/^[a-zA-Z0-9\s]*$/
+          if(!pattern.test(inp) && inp!==null){
+            this.console_logs+="Before restrictInputEvents illegalChar val: "+ formControl.value + "\n"
+            console.log("Before restrictInputEvents", formControl.value,inp.replace(/[^a-zA-Z0-9\s]/gi,""))
+            formControl.setValue(inp.replace(/[^a-zA-Z0-9\s]/gi,""))
+            this.console_logs+="After restrictInputEvents illegalChar val:"+ formControl.value+"\n"
+            console.log("After restrictInputEvents", formControl.value)
+          }
+        }
+
+        //max Length Check
+        if(this.myForm.get('maxLength5').value){
+          if(this.myForm.get('alias')?.value?.length && this.myForm.get('alias')?.value?.length>=3){
+            this.console_logs+="Before restrictInputEvents maxLength5 val: "+ formControl.value+"\n"
+            console.log("Before restrictInputEvents", formControl.value)
+            formControl.setValue(formControl.value?formControl.value.slice(0,5):null)
+            this.console_logs+="After restrictInputEvents maxLength5 val: "+ formControl.value+"\n"
+            console.log("After restrictInputEvents", formControl.value)
+          }
+        }
+      }
+    }
+  }
+
+  toggleRestictClicked(formName:string){
+    if(this.myForm.get(formName).value){
+      let eventKeys=['keydown','keypress', 'input', 'keyup']
+      if(eventKeys.includes(formName)){
+        eventKeys.forEach((key)=>{
+          if(key!==formName){
+            this.myForm.get(key).setValue(false)
+          }else{
+            this.myForm.get(key).setValue(true)
+          }
+          this.myForm.get(key).updateValueAndValidity()
+        })
+      }
+    }
+  }
+
+  logEvents($event, formControl:AbstractControl){
+    console.log(this.eventCounter,":", formControl.value,":",$event)
+    this.orderOfEvents.push({id:this.eventCounter,name: '(keydown)', event:this.constructEvent($event),value:formControl.value, color: '#9C27B0', icon: PrimeIcons.ARROW_CIRCLE_DOWN})
+    this.eventCounter+=1
+    this.orderOfEvents=cloneDeep(this.orderOfEvents)
   }
 }

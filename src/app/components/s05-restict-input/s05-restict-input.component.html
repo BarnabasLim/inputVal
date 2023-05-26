@@ -11,7 +11,7 @@
                     <i class="pi pi-spin pi-spinner"></i>
                 </ng-container>
                 <input pInputText id="name" aria-describedby="name-help" formControlName="name" [maxlength]="11"
-                (keydown)="onKeydown(myForm.get('name'),$event)" (keypress)="onKeypress(myForm.get('name'),$event)" (input)="onInput(myForm.get('name'),$event)" (keyup)="onKeyup(myForm.get('name'),$event)"/>
+                (keydown)="onKeydown(myForm.get('name'),$event, true)" (keypress)="onKeypress(myForm.get('name'),$event, true)" (input)="onInput(myForm.get('name'),$event, true)" (keyup)="onKeyup(myForm.get('name'),$event, true)"/>
             </div>
             <div *ngIf="myForm.get('name').invalid && (myForm.get('name').touched || myForm.get('name').dirty); else name_help">
                 <div *ngIf="myForm.get('name')?.errors" class="p-error">
@@ -22,14 +22,14 @@
         </div>
     
         <div *ngIf="checked">
-            <p-panel header="console" [toggleable]="true">
+            <!-- <p-panel header="console" [toggleable]="true">
                 <code>
                     <pre>this.myForm?.get('name').errors:</pre>
                     <pre>{{this.myForm?.get('name').errors|json}}</pre>
                     <pre>this.myForm?.get('name').pending:</pre>
                     <pre>{{this.myForm?.get('name').pending|json}}</pre>
                 </code>
-            </p-panel>
+            </p-panel> -->
             <p-panel header="console" [toggleable]="true">
                 <ng-template pTemplate="icons">
                     <button pButton class="p-panel-header-icon p-link" (click)="ResetEvent()">
@@ -61,9 +61,14 @@
         </div>
 
         
-        <!-- <div *ngIf="checked">
-            <validator-toggle [myForm]="myForm" [controlName]="'alias'" [validators_object]="validators_object"></validator-toggle>
-        </div> -->
+        <div *ngIf="checked" class="toggles--list">
+            <div *ngFor="let toggle of toggles_keys" >
+                <div class="toggles--item">
+                    <p-inputSwitch (click)="toggleRestictClicked(toggle)" formControlName="{{toggle}}"></p-inputSwitch>
+                    <div>{{toggle}}</div>
+                </div>    
+            </div>
+        </div>
     
         <div class="flex flex-column gap-2">
             <label htmlFor="alias">Alias</label>
@@ -71,7 +76,8 @@
                     <ng-container *ngIf="myForm.get('alias').pending">
                         <i class="pi pi-spin pi-spinner"></i>
                     </ng-container>
-                    <input pInputText id="alias" aria-describedby="alias-help" formControlName="alias" />
+                    <input pInputText id="alias" aria-describedby="alias-help" formControlName="alias" [maxlength]="11"
+                    (keydown)="onKeydown(myForm.get('alias'),$event, false, true)" (keypress)="onKeypress(myForm.get('alias'),$event, false, true)" (input)="onInput(myForm.get('alias'),$event, false, true)" (keyup)="onKeyup(myForm.get('alias'),$event, false, true)"/>
             </div>
             <div *ngIf="myForm.get('alias').invalid && (myForm.get('alias').touched || myForm.get('alias').dirty); else alias_help">
                 <div *ngIf="myForm.get('alias')?.errors" class="p-error">
@@ -84,10 +90,10 @@
         <div *ngIf="checked">
             <p-panel header="console" [toggleable]="true">
                 <code>
-                    <pre>this.myForm?.get('alias').errors:</pre>
-                    <pre>{{this.myForm?.get('alias').errors|json}}</pre>
-                    <pre>this.myForm?.get('alias').pending:</pre>
-                    <pre>{{this.myForm?.get('alias').pending|json}}</pre>
+                    <pre>this.myForm?.get('alias').value:</pre>
+                    <pre>{{this.myForm?.get('alias').value|json}}</pre>
+                    <pre>console.logs:</pre>
+                    <pre>{{this.console_logs}}</pre>
                 </code>
             </p-panel>
         </div>
