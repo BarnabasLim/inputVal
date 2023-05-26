@@ -46,7 +46,10 @@ export class S05RestictInputComponent implements OnInit {
       return {type:"KeyboardEvent", isTrusted:$event.isTrusted, key:$event.key, code: $event.code, location:$event.location, ctrlKey:$event.ctrlKey}
     }
     if($event instanceof InputEvent){
-      return {type:"InputEvent", isTrusted:$event.isTrusted, data:$event.data, isComposing: $event.isComposing, inputType:$event.inputType, dataTransfer:$event.dataTransfer}
+      return {type:"InputEvent", isTrusted:$event.isTrusted, data:$event.data, isComposing: $event.isComposing, 
+        // inputType:$event.inputType, 
+        dataTransfer:$event.dataTransfer
+      }
     }
   }
   onKeydown(formControl:AbstractControl,$event:any){

@@ -51,7 +51,7 @@
                         </code>
                     </ng-template>
                     <ng-template pTemplate="content" let-event>
-                        <p-card [subheader]= "event.id+'_'+event.name+'\n'+'formControl.value:'+event.value" class="event--item">
+                        <p-card [subheader]= "event.id+'_'+event.name+'\n'+'formVal:'+'\n'+event.value" class="event--item">
                             <pre>{{event.event|json}}</pre>
                         </p-card>
                     </ng-template>
