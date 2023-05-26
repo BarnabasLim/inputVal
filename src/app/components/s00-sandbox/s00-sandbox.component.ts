@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { forbiddenNameValidator } from './validators/forbiddenName.validator';
+import { asyncDuplicateCheck } from './validators/asyncDuplicateCheck.validator';
 
 @Component({
   selector: 'app-s00-sandbox',
@@ -19,13 +21,16 @@ export class S00SandboxComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm=this.fb.group({
-      name:['',[
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9\s]*$/), 
-        Validators.minLength(3),
-        Validators.maxLength(11)
-      ]],
-      alias:['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9\s]*$/)]]
+      name:['',
+        [
+          Validators.required,
+          forbiddenNameValidator(['na','null','nil'])
+        ]],
+      alias:['',{
+        Validators:[Validators.required],
+        asyncValidators:[asyncDuplicateCheck],
+        updateOn: 'blur'
+      }]
     })
   }
 
