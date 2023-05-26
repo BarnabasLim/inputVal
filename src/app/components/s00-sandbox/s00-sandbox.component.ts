@@ -19,8 +19,13 @@ export class S00SandboxComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm=this.fb.group({
-      name:['',[Validators.required]],
-      alias:['',[Validators.required]]
+      name:['',[
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9\s]*$/), 
+        Validators.minLength(3),
+        Validators.maxLength(11)
+      ]],
+      alias:['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9\s]*$/)]]
     })
   }
 
