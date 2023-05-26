@@ -27,6 +27,7 @@ import { BSubmitButtonComponent } from './reusable-components/b-submit-button/b-
 import { S03CustomValidatorsComponent } from './components/s03-custom-validators/s03-custom-validators.component';
 import { S04ConditionalValidatorsComponent } from './components/s04-conditional-validators/s04-conditional-validators.component';
 import { S05RestictInputComponent } from './components/s05-restict-input/s05-restict-input.component';
+import { S00SandboxComponent } from './components/s00-sandbox/s00-sandbox.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { S05RestictInputComponent } from './components/s05-restict-input/s05-res
     BSubmitButtonComponent,
     S03CustomValidatorsComponent,
     S04ConditionalValidatorsComponent,
-    S05RestictInputComponent
+    S05RestictInputComponent,
+    S00SandboxComponent
   ],
   imports: [
     BrowserModule,

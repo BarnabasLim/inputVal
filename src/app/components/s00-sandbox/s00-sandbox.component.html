@@ -1,0 +1,18 @@
+<standard-card [headerString]="'Sandbox'" [checked]="checked" (checkedChange)="toggleClicked($event)">
+    <form [formGroup]="myForm" class="flex flex-column gap-4">
+
+        <div class="flex flex-column gap-2">
+            <label htmlFor="name">Name</label>
+            <input pInputText id="name" aria-describedby="name-help" formControlName="name" />
+            <small id="name-help">Enter your name</small>
+        </div>
+    
+        <div class="flex flex-column gap-2">
+            <label htmlFor="alias">Alias</label>
+            <input pInputText id="alias" aria-describedby="alias-help" formControlName="alias" />
+            <small id="alias-help">Enter your alias</small>
+        </div>
+    
+        <b-submit-button [myForm]="myForm" [checked]="checked"></b-submit-button>
+    </form>
+</standard-card>
