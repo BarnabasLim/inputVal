@@ -20,14 +20,18 @@ export class BSubmitButtonComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(){
-    console.log("submit ")
-    if(this.myForm.valid){
+    console.log("submit ", this.myForm.status)
+    if(this.myForm.status=="VALID"){
       this.messageService.add({severity:'success', summary: 'Success', detail: 'Form Submitted'});
       this.reset=true;
-    }else{
+    }else if(this.myForm.status=="INVALID"){
       this.myForm.markAllAsTouched();
       this.markAllControlsAsDirty(Object.values(this.myForm.controls));
-      this.messageService.add({severity:'error', summary: 'Error', detail: 'From Invalid'});
+      this.messageService.add({severity:'error', summary: 'Error', detail: 'Form Invalid'});
+    }else if(this.myForm.status=="PENDING"){
+      this.myForm.markAllAsTouched();
+      this.markAllControlsAsDirty(Object.values(this.myForm.controls));
+      this.messageService.add({severity:'warn', summary: 'WARNING', detail: 'Form Pending'});
     }
   }
   onReset(){
