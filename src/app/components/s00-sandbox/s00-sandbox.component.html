@@ -11,8 +11,6 @@
                     <small *ngIf="myForm.get('name')?.errors['pattern']">Enter name without invalid characters</small>
                     <small *ngIf="myForm.get('name')?.errors['minlength']">Enter your name (min 3 characters)</small>
                     <small *ngIf="myForm.get('name')?.errors['maxlength']">Enter your name (max 11 characters)</small>
-                    <small *ngIf="myForm.get('name')?.errors['forbiddenName']">Enter your name without variation of "NA", "NIL" or"NULL"</small>
-                    <small *ngIf="myForm.get('name')?.errors['asyncDuplicate']">Enter your name, "{{myForm.get('name')?.errors['asyncDuplicate']?.value}}" is already taken</small>
                 </div>
             </div>
             <ng-template #name_help><small  id="name-help">Enter your name</small></ng-template>
@@ -28,8 +26,6 @@
                     <small *ngIf="myForm.get('alias')?.errors['pattern']">Enter alias without invalid characters</small>
                     <small *ngIf="myForm.get('alias')?.errors['minlength']">Enter your alias (min 3 characters)</small>
                     <small *ngIf="myForm.get('alias')?.errors['maxlength']">Enter your alias (max 11 characters)</small>
-                    <small *ngIf="myForm.get('alias')?.errors['forbiddenName']">Enter your alias without variation of "NA", "NIL" or"NULL"</small>
-                    <small *ngIf="myForm.get('alias')?.errors['asyncDuplicate']">Enter your alias, "{{myForm.get('alias')?.errors['asyncDuplicate']?.value}}" is already taken</small>
                 </div>
             </div>
             <ng-template #alias_help><small  id="alias_help">Enter your alias</small></ng-template>

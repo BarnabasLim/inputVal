@@ -4,7 +4,6 @@
             <th>valid</th>
             <th>touched</th>
             <th>pristine</th>
-            <!-- <th>others</th> -->
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
@@ -21,10 +20,6 @@
                 <div class="status--item"><span class="status--item--text">dirty</span> <span class="pi {{this.myForm.dirty?'pi-check-circle':'pi-times-circle'}}"></span></div>
                 <div class="status--item"><span class="status--item--text">pristine</span> <span class="pi {{this.myForm.pristine?'pi-check-circle':'pi-times-circle'}}"></span></div>
             </td>
-            <!-- <td>
-                <div class="status--item"><span class="status--item--text">pending</span> <span class="pi {{this.myForm.pending?'pi-check-circle':'pi-times-circle'}}"></span></div>
-                <div class="status--item"><span class="status--item--text">disabled</span> <span class="pi {{this.myForm.disabled?'pi-check-circle':'pi-times-circle'}}"></span></div>
-            </td> -->
         </tr>
     </ng-template>
 </p-table>
