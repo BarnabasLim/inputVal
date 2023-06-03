@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { forbiddenNameValidator } from './validators/forbiddenName.validator';
 import { asyncDuplicateCheck } from './validators/asyncDuplicateCheck.validator';
+import { conditionalValidator } from './validators/conditionalValidator.validator';
 @Component({
   selector: 'app-s00-sandbox',
   templateUrl: './s00-sandbox.component.html',
@@ -12,6 +13,7 @@ export class S00SandboxComponent implements OnInit {
   //Things to do Reset Form once complete
   //Show results of forms
   public checked:boolean=false;
+  public name_subscriber:any;
 
   public myForm:FormGroup;
   constructor(
@@ -22,15 +24,28 @@ export class S00SandboxComponent implements OnInit {
     this.myForm=this.fb.group({
       name:['',[
         Validators.required,
-        forbiddenNameValidator(['na','nil','null'])
       ]],
-      alias:['',{
-          Validators:[Validators.required],
-          asyncValidators: [asyncDuplicateCheck],
-          updateOn: 'blur'
-        }
+      alias:['',[          
+        conditionalValidator(
+          ()=>{ return this.myForm?.get('name')?.value?.toLowerCase()=="secret"}, 
+          Validators.required
+        )]
       ]
     })
+
+    this.subscriber()
+  }
+
+  subscriber(){
+    this.name_subscriber=this.myForm.get('name').valueChanges.subscribe((value)=>{
+      this.myForm.get('alias').updateValueAndValidity();
+    })
+  }
+
+  unsubscriber(){
+    if(!this.name_subscriber){
+      this.name_subscriber.unsubscribe();
+    }
   }
 
   get name(){

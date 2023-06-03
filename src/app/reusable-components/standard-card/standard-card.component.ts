@@ -19,7 +19,7 @@ export class StandardCardComponent implements OnInit {
 
 
   toggleClicked(){
-    console.log("CLICKED IT", this.checked)
+    // console.log("CLICKED IT", this.checked)
     this.checkedChange.emit(this.checked);
   }
 
