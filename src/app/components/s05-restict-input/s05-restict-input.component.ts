@@ -125,7 +125,7 @@ export class S05RestictInputComponent implements OnInit {
 
     }
     this.console_logs+="restrictKeysEvents event.key:"+$event.key+ eventHappen;
-    console.log("restrictKeysEvents",$event.key, eventHappen)
+    console.log("restrictKeysEvents\n","$event.key: ",$event.key,"\n$event.keyCode: ",$event.keyCode, eventHappen)
     return eventHappen
 
   }
