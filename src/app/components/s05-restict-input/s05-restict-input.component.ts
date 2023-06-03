@@ -119,7 +119,7 @@ export class S05RestictInputComponent implements OnInit {
 
     //max Length Check
     if(this.myForm.get('maxLength5').value){
-      if(this.myForm.get('alias')?.value?.length && this.myForm.get('alias')?.value?.length>=3){
+      if(this.myForm.get('alias')?.value?.length && this.myForm.get('alias')?.value?.length>=5){
         eventHappen=false
       }
 
@@ -152,7 +152,7 @@ export class S05RestictInputComponent implements OnInit {
 
         //max Length Check
         if(this.myForm.get('maxLength5').value){
-          if(this.myForm.get('alias')?.value?.length && this.myForm.get('alias')?.value?.length>=3){
+          if(this.myForm.get('alias')?.value?.length && this.myForm.get('alias')?.value?.length>=5){
             this.console_logs+="Before restrictInputEvents maxLength5 val: "+ formControl.value+"\n"
             console.log("Before restrictInputEvents", formControl.value)
             formControl.setValue(formControl.value?formControl.value.slice(0,5):null)
