@@ -10,7 +10,7 @@
                 <ng-container *ngIf="myForm.get('name').pending">
                     <i class="pi pi-spin pi-spinner"></i>
                 </ng-container>
-                <input pInputText id="name" aria-describedby="name-help" formControlName="name" [maxlength]="11"/>
+                <input pInputText id="name" aria-describedby="name-help" formControlName="name" />
             </div>
             <div *ngIf="myForm.get('name').invalid && (myForm.get('name').touched || myForm.get('name').dirty); else name_help">
                 <div *ngIf="myForm.get('name')?.errors" class="p-error">
