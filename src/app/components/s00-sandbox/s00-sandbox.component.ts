@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { forbiddenNameValidator } from './validators/forbiddenName.validator';
+import { asyncDuplicateCheck } from './validators/asyncDuplicateCheck.validator';
 @Component({
   selector: 'app-s00-sandbox',
   templateUrl: './s00-sandbox.component.html',
@@ -21,7 +22,11 @@ export class S00SandboxComponent implements OnInit {
         Validators.required, 
         forbiddenNameValidator(['na','nil','null'])
       ]],
-      alias:['',[Validators.required]]
+      alias:['',{
+        validators: [Validators.required],
+        asyncValidators: [asyncDuplicateCheck],
+        updateOn: 'blur'
+      }]
     })
   }
 
