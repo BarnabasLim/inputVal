@@ -8,8 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class S00SandboxComponent implements OnInit {
 
-  //Things to do Reset Form once complete
-  //Show results of forms
   public checked:boolean=false;
 
   public myForm:FormGroup;
@@ -19,13 +17,8 @@ export class S00SandboxComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm=this.fb.group({
-      name:['',[
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9\s]*$/), 
-        Validators.minLength(3),
-        Validators.maxLength(11)
-      ]],
-      alias:['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9\s]*$/)]]
+      name:['',[Validators.required]],
+      alias:['',[Validators.required]]
     })
   }
 
